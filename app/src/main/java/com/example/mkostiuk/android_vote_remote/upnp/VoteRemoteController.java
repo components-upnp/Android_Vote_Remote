@@ -3,6 +3,7 @@ package com.example.mkostiuk.android_vote_remote.upnp;
 import org.fourthline.cling.binding.annotations.UpnpService;
 import org.fourthline.cling.binding.annotations.UpnpServiceId;
 import org.fourthline.cling.binding.annotations.UpnpServiceType;
+import org.fourthline.cling.binding.annotations.UpnpStateVariable;
 
 import java.beans.PropertyChangeSupport;
 
@@ -26,5 +27,17 @@ public class VoteRemoteController {
         return  propertyChangeSupport;
     }
 
-    //TODO implémenter les méthodes du service
+    @UpnpStateVariable
+    private String commande = "";
+
+    @UpnpStateVariable
+    private String udn = "";
+
+    public void envoieCommande(String udn, String commande) {
+        this.udn = udn;
+        this.commande = commande;
+
+        //TODO comprendre comment faire passer plusieurs paramètres
+       // getPropertyChangeSupport().fireIndexedPropertyChange();
+    }
 }
