@@ -21,12 +21,10 @@ public class Service {
     private AndroidUpnpService upnpService;
     private UDN udnVoteRemote;
     private ServiceConnection serviceConnection;
-    private Logger log;
 
 
-    public Service(final Logger l) {
+    public Service() {
 
-        log = l;
 
         serviceConnection = new ServiceConnection() {
             @Override
@@ -39,24 +37,20 @@ public class Service {
                 // Register the device when this activity binds to the service for the first time
                 if (remoteControllerService == null) {
                     try {
-                        log.log(Level.INFO, "CREATION DEVICE");
                         System.err.println("CREATION DEVICE!!!");
                         udnVoteRemote = new SaveUDN().getUdn();
-                        log.log(Level.INFO,"UDN device: " + udnVoteRemote);
-                        log.log(Level.INFO, udnVoteRemote.toString());
                         LocalDevice remoteDevice = VoteRemoteDevice.createDevice(udnVoteRemote);
 
                         upnpService.getRegistry().addDevice(remoteDevice);
 
                     } catch (Exception ex) {
                         System.err.println("Creating Android remote controller device failed !!!");
-                        log.log(Level.SEVERE, ex.toString());
+                        ex.printStackTrace();
                         return;
                     }
                 }
 
                 System.out.println("Creation device reussie...");
-                log.log(Level.INFO, "Création device reussie...");
             }
 
             @Override
@@ -83,7 +77,10 @@ public class Service {
     }
 
     public void stop() {
-        log.log(Level.INFO, "Arrêt du service UPnP!!!");
         upnpService.get().shutdown();
+    }
+
+    public UDN getUdn() {
+        return udnVoteRemote;
     }
 }

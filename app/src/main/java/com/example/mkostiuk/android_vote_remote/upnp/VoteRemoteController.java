@@ -1,5 +1,7 @@
 package com.example.mkostiuk.android_vote_remote.upnp;
 
+import org.fourthline.cling.binding.annotations.UpnpAction;
+import org.fourthline.cling.binding.annotations.UpnpInputArgument;
 import org.fourthline.cling.binding.annotations.UpnpService;
 import org.fourthline.cling.binding.annotations.UpnpServiceId;
 import org.fourthline.cling.binding.annotations.UpnpServiceType;
@@ -28,16 +30,28 @@ public class VoteRemoteController {
     }
 
     @UpnpStateVariable
-    private String commande = "";
+    private String commande;
 
     @UpnpStateVariable
     private String udn = "";
 
-    public void envoieCommande(String udn, String commande) {
-        this.udn = udn;
-        this.commande = commande;
+    @UpnpStateVariable(sendEvents = false)
+    private String question = "";
 
-        //TODO comprendre comment faire passer plusieurs paramètres
-       // getPropertyChangeSupport().fireIndexedPropertyChange();
+    public void envoieCommande(String c) {
+        commande = c;
+
+        getPropertyChangeSupport().firePropertyChange("Commande", null, commande);
+    }
+
+    public void inscription(String udn) {
+        this.udn = udn;
+        getPropertyChangeSupport().firePropertyChange("Udn", null, udn);
+    }
+
+    @UpnpAction(name = "questionNotif")
+    public void questionNotif(@UpnpInputArgument(name = "Question") String question) {
+        this.question = question;
+        getPropertyChangeSupport().firePropertyChange("question", null, this.question);
     }
 }
