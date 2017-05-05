@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.mkostiuk.android_vote_remote.R;
 import com.example.mkostiuk.android_vote_remote.upnp.Service;
@@ -27,15 +28,19 @@ import java.util.TimerTask;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import xdroid.toaster.Toaster;
+
 import static org.fourthline.cling.binding.xml.Descriptor.Device.ELEMENT.service;
 
 public class App extends AppCompatActivity {
 
-    private Button one, two, three, four, five, six, seven, eight, nine, zero, inscription;
+    private Button one, two, three, four, five, six, seven, eight, nine, zero, inscription, retour, affiheQuestion;
     private Service service;
     private ServiceConnection serviceConnection;
     private LocalService<VoteRemoteController> voteRemoteService;
     private GenerateurXml gen;
+    private EditText textQuestion;
+    private String question;
 
     public void activate(Button ... buttons) {
         for (Button b : buttons)
@@ -59,8 +64,14 @@ public class App extends AppCompatActivity {
         nine = (Button) findViewById(R.id.nine);
         zero = (Button) findViewById(R.id.zero);
         inscription = (Button) findViewById(R.id.inscription);
-        activate(inscription);
+        retour = (Button) findViewById(R.id.retour);
+        affiheQuestion = (Button) findViewById(R.id.afficheQuestion);
+
+
+        activate(inscription, affiheQuestion);
         deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+
+        question = "";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
@@ -111,6 +122,8 @@ public class App extends AppCompatActivity {
                     public void propertyChange(PropertyChangeEvent evt) {
                         if (evt.getPropertyName() == "question") {
                             activate(one, two, three, four, five, six, seven, eight, nine, zero);
+                            Toaster.toast("Nouvelle question");
+                            question = (String)evt.getNewValue();
                         }
                     }
                 });
@@ -198,5 +211,15 @@ public class App extends AppCompatActivity {
                 .inscription(service.getUdn().getIdentifierString()
         );
         deactivate(inscription);
+    }
+
+    public void onClickAfficherQuestion(View view) {
+        setContentView(R.layout.affiche_question);
+        textQuestion = (EditText) findViewById(R.id.textQuestion);
+        textQuestion.setText(question);
+    }
+
+    public void onClickRetour(View view) {
+        setContentView(R.layout.activity_app);
     }
 }

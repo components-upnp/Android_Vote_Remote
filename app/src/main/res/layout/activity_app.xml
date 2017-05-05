@@ -118,4 +118,15 @@
         android:layout_marginTop="32dp"
         android:onClick="onClickZero"
         android:text="0" />
+
+    <Button
+        android:id="@+id/afficheQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/inscription"
+        android:layout_alignBottom="@+id/inscription"
+        android:layout_alignEnd="@+id/nine"
+        android:layout_alignRight="@+id/nine"
+        android:onClick="onClickAfficherQuestion"
+        android:text="Afficher Question" />
 </RelativeLayout>
