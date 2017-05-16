@@ -33,9 +33,10 @@ public class Service {
 
 
                 LocalService<VoteRemoteController> remoteControllerService = getVoteRemoteLocalService();
+                LocalService<QuestionController> questionService = getQuestionService();
 
                 // Register the device when this activity binds to the service for the first time
-                if (remoteControllerService == null) {
+                if ((remoteControllerService == null) || (questionService == null)) {
                     try {
                         System.err.println("CREATION DEVICE!!!");
                         udnVoteRemote = new SaveUDN().getUdn();
@@ -69,7 +70,20 @@ public class Service {
             return null;
 
         return (LocalService<VoteRemoteController>)
-                remoteDevice.findService(new UDAServiceType("VoteRemoteController", 1));
+                remoteDevice.findService(new UDAServiceType("VoteService", 1));
+    }
+
+    public LocalService<QuestionController> getQuestionService () {
+        if (upnpService == null)
+            return null;
+
+        LocalDevice remoteDevice;
+
+        if ((remoteDevice = upnpService.getRegistry().getLocalDevice(udnVoteRemote, true)) == null)
+            return null;
+
+        return (LocalService<QuestionController>)
+                remoteDevice.findService(new UDAServiceType("QuestionService", 1));
     }
 
     public ServiceConnection getService() {

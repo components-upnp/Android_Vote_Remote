@@ -10,41 +10,31 @@ import org.fourthline.cling.binding.annotations.UpnpStateVariable;
 import java.beans.PropertyChangeSupport;
 
 /**
- * Created by mkostiuk on 03/05/2017.
+ * Created by mkostiuk on 16/05/2017.
  */
 
 @UpnpService(
-        serviceType = @UpnpServiceType(value = "VoteService"),
-        serviceId = @UpnpServiceId("VoteService")
+        serviceId = @UpnpServiceId(value = "QuestionService"),
+        serviceType = @UpnpServiceType("QuestionService")
 )
-public class VoteRemoteController {
+public class QuestionController {
 
     private final PropertyChangeSupport propertyChangeSupport;
 
-    public VoteRemoteController() {
+    public QuestionController() {
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     public PropertyChangeSupport getPropertyChangeSupport() {
-        return  propertyChangeSupport;
+        return propertyChangeSupport;
     }
 
-    @UpnpStateVariable
-    private String commande;
+    @UpnpStateVariable(sendEvents = false)
+    private String question = "";
 
-    @UpnpStateVariable
-    private String udn = "";
-
-    public void envoieCommande(String c) {
-        commande = c;
-
-        getPropertyChangeSupport().firePropertyChange("Commande", null, commande);
+    @UpnpAction(name = "questionNotif")
+    public void questionNotif(@UpnpInputArgument(name = "Question") String question) {
+        this.question = question;
+        getPropertyChangeSupport().firePropertyChange("question", null, this.question);
     }
-
-    public void inscription(String udn) {
-        this.udn = udn;
-        getPropertyChangeSupport().firePropertyChange("Udn", null, udn);
-    }
-
-
 }

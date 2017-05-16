@@ -23,28 +23,37 @@ public class VoteRemoteDevice {
             throws ValidationException, LocalServiceBindingException {
 
         DeviceType type =
-                new UDADeviceType("VoteRemoteController", 1);
+                new UDADeviceType("VoteRemoteControl", 1);
 
         DeviceDetails details =
                 new DeviceDetails(
-                        "Vote Remote",
+                        "Vote Remote Control",
                         new ManufacturerDetails("IRIT"),
-                        new ModelDetails("AndroidController", "Soumet un vote", "v1")
+                        new ModelDetails("Vote", "Soumet un vote", "v1")
                 );
 
-        LocalService service =
+        LocalService voteService =
                 new AnnotationLocalServiceBinder().read(VoteRemoteController.class);
 
-        service.setManager(
-                new DefaultServiceManager<>(service, VoteRemoteController.class)
+        voteService.setManager(
+                new DefaultServiceManager<>(voteService, VoteRemoteController.class)
+        );
+
+        LocalService questionService =
+                new AnnotationLocalServiceBinder().read(QuestionController.class);
+
+        questionService.setManager(
+                new DefaultServiceManager(
+                        questionService, QuestionController.class
+                )
         );
 
         return new LocalDevice(
                 new DeviceIdentity(udn),
                 type,
                 details,
+                new LocalService[] {voteService, questionService}
 
-                service
         );
     }
 }

@@ -37,7 +37,6 @@ public class App extends AppCompatActivity {
     private Button one, two, three, four, five, six, seven, eight, nine, zero, inscription, retour, affiheQuestion;
     private Service service;
     private ServiceConnection serviceConnection;
-    private LocalService<VoteRemoteController> voteRemoteService;
     private GenerateurXml gen;
     private EditText textQuestion;
     private String question;
@@ -95,7 +94,6 @@ public class App extends AppCompatActivity {
 
         service = new Service();
         serviceConnection = service.getService();
-        voteRemoteService = service.getVoteRemoteLocalService();
 
         gen = new GenerateurXml();
 
@@ -111,12 +109,10 @@ public class App extends AppCompatActivity {
             }
         }, 5000);
 
-
-
     }
 
     public void setListeners() {
-        service.getVoteRemoteLocalService().getManager().getImplementation().getPropertyChangeSupport()
+        service.getQuestionService().getManager().getImplementation().getPropertyChangeSupport()
                 .addPropertyChangeListener(new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
