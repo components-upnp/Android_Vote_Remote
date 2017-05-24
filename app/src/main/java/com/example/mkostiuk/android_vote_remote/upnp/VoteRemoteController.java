@@ -1,7 +1,6 @@
 package com.example.mkostiuk.android_vote_remote.upnp;
 
-import org.fourthline.cling.binding.annotations.UpnpAction;
-import org.fourthline.cling.binding.annotations.UpnpInputArgument;
+
 import org.fourthline.cling.binding.annotations.UpnpService;
 import org.fourthline.cling.binding.annotations.UpnpServiceId;
 import org.fourthline.cling.binding.annotations.UpnpServiceType;
@@ -40,11 +39,5 @@ public class VoteRemoteController {
 
         getPropertyChangeSupport().firePropertyChange("Commande", null, commande);
     }
-
-    public void inscription(String udn) {
-        this.udn = udn;
-        getPropertyChangeSupport().firePropertyChange("Udn", null, udn);
-    }
-
 
 }

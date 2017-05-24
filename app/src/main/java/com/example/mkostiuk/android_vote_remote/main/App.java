@@ -96,7 +96,7 @@ public class App extends AppCompatActivity {
         serviceConnection = service.getService();
 
         gen = new GenerateurXml();
-
+        
         getApplicationContext().bindService(new Intent(this, AndroidUpnpServiceImpl.class),
                 serviceConnection,
                 Context.BIND_AUTO_CREATE);
@@ -202,9 +202,9 @@ public class App extends AppCompatActivity {
         deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
     }
 
-    public void onClickInscription(View view) {
+    public void onClickInscription(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation()
-                .inscription(service.getUdn().getIdentifierString()
+                .envoieCommande(gen.getDocXml(service.getUdn().toString(), "")
         );
         deactivate(inscription);
     }
