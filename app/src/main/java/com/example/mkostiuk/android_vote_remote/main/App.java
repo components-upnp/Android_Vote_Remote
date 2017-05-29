@@ -51,7 +51,9 @@ public class App extends AppCompatActivity {
             b.setClickable(false);
     }
 
+
     public void init() {
+
         one = (Button) findViewById(R.id.one);
         two = (Button) findViewById(R.id.two);
         three = (Button) findViewById(R.id.three);
@@ -65,10 +67,6 @@ public class App extends AppCompatActivity {
         inscription = (Button) findViewById(R.id.inscription);
         retour = (Button) findViewById(R.id.retour);
         affiheQuestion = (Button) findViewById(R.id.afficheQuestion);
-
-
-        activate(inscription, affiheQuestion);
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
 
         question = "";
 
@@ -117,7 +115,6 @@ public class App extends AppCompatActivity {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
                         if (evt.getPropertyName() == "question") {
-                            activate(one, two, three, four, five, six, seven, eight, nine, zero);
                             Toaster.toast("Nouvelle question");
                             question = (String)evt.getNewValue();
                         }
@@ -136,77 +133,77 @@ public class App extends AppCompatActivity {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"1")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickTwo(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"2")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickThree(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"3")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickFour(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"4")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickFive(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"5")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickSix(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"6")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickSeven(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"7")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickEight(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"8")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickNine(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"9")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickZero(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation().envoieCommande(
                 gen.getDocXml(service.getUdn().toString(),"0")
         );
-        deactivate(one, two, three, four, five, six, seven, eight, nine, zero);
+        sendVide();
     }
 
     public void onClickInscription(View view) throws TransformerException, ParserConfigurationException {
         service.getVoteRemoteLocalService().getManager().getImplementation()
                 .envoieCommande(gen.getDocXml(service.getUdn().toString(), "")
         );
-        deactivate(inscription);
+
     }
 
     public void onClickAfficherQuestion(View view) {
@@ -217,5 +214,10 @@ public class App extends AppCompatActivity {
 
     public void onClickRetour(View view) {
         setContentView(R.layout.activity_app);
+    }
+
+    public void sendVide() {
+        service.getVoteRemoteLocalService().getManager().getImplementation()
+                .envoieCommande("");
     }
 }
