@@ -1,5 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+    <Button
+        android:id="@+id/inscription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:onClick="onClickInscription"
+        android:text="Inscription" />
 
+    <Button
+        android:id="@+id/one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/inscription"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/inscription"
+        android:layout_marginTop="21dp"
+        android:onClick="onClickOne"
+        android:text="1" />
+
+    <Button
+        android:id="@+id/two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/one"
+        android:layout_alignBottom="@+id/one"
+        android:layout_alignLeft="@+id/eight"
+        android:layout_alignStart="@+id/eight"
+        android:onClick="onClickTwo"
+        android:text="2" />
+
+    <Button
+        android:id="@+id/three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/two"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:onClick="onClickThree"
+        android:text="3" />
+
+    <Button
+        android:id="@+id/four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/one"
+        android:layout_alignStart="@+id/one"
+        android:layout_below="@+id/one"
+        android:layout_marginTop="30dp"
+        android:onClick="onClickFour"
+        android:text="4" />
+
+    <Button
+        android:id="@+id/five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/four"
+        android:layout_alignEnd="@+id/two"
+        android:layout_alignRight="@+id/two"
+        android:onClick="onClickFive"
+        android:text="5" />
+
+    <Button
+        android:id="@+id/six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/five"
+        android:layout_alignBottom="@+id/five"
+        android:layout_alignLeft="@+id/three"
+        android:layout_alignStart="@+id/three"
+        android:onClick="onClickSix"
+        android:text="6" />
+
+    <Button
+        android:id="@+id/seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/four"
+        android:layout_alignStart="@+id/four"
+        android:layout_below="@+id/six"
+        android:layout_marginTop="34dp"
+        android:onClick="onClickSeven"
+        android:text="7" />
+
+    <Button
+        android:id="@+id/eight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/seven"
+        android:layout_alignBottom="@+id/seven"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickEight"
+        android:text="8" />
+
+    <Button
+        android:id="@+id/nine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/eight"
+        android:layout_alignBottom="@+id/eight"
+        android:layout_alignLeft="@+id/six"
+        android:layout_alignStart="@+id/six"
+        android:onClick="onClickNine"
+        android:text="9" />
+
+    <Button
+        android:id="@+id/zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nine"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:onClick="onClickZero"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/afficheQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/inscription"
+        android:layout_alignBottom="@+id/inscription"
+        android:layout_alignEnd="@+id/nine"
+        android:layout_alignRight="@+id/nine"
+        android:onClick="onClickAfficherQuestion"
+        android:text="Afficher Question" />
 </RelativeLayout>

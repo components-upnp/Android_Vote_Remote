@@ -115,8 +115,10 @@ public class App extends AppCompatActivity {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
                         if (evt.getPropertyName() == "question") {
-                            Toaster.toast("Nouvelle question");
-                            question = (String)evt.getNewValue();
+                            if (!(((String) evt.getNewValue()).equals(""))) {
+                                Toaster.toast("Nouvelle question");
+                                question = (String)evt.getNewValue();
+                            }
                         }
                     }
                 });
