@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.mkostiuk.android_vote_remote.R;
 import com.example.mkostiuk.android_vote_remote.upnp.Service;
@@ -38,7 +39,7 @@ public class App extends AppCompatActivity {
     private Service service;
     private ServiceConnection serviceConnection;
     private GenerateurXml gen;
-    private EditText textQuestion;
+    private TextView textQuestion;
     private String question;
 
     public void activate(Button ... buttons) {
@@ -210,8 +211,9 @@ public class App extends AppCompatActivity {
 
     public void onClickAfficherQuestion(View view) {
         setContentView(R.layout.affiche_question);
-        textQuestion = (EditText) findViewById(R.id.textQuestion);
+        textQuestion = (TextView) findViewById(R.id.textQuestion);
         textQuestion.setText(question);
+
     }
 
     public void onClickRetour(View view) {
